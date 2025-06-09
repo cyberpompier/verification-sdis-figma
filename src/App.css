@@ -1,0 +1,4 @@
+#root {
+  /* Removed max-width, margin, and padding to allow full width */
+  text-align: center; /* Keep text alignment if desired, or remove */
+}
