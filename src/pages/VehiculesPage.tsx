@@ -3,7 +3,7 @@ import { CardGrid } from '@/components/card-grid';
 const vehicles = [
   {
     id: 1,
-    imageSrc: 'https://images.pexels.com/photos/1616090/pexels-photo-1616090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    imageSrc: 'https://rescue18.com/wp-content/uploads/2022/03/fpt-sdis-35.jpg',
     title: 'FPT',
     description: 'Fourgon Pompe Tonne - Véhicule polyvalent pour la lutte contre l\'incendie et les opérations diverses.',
   },

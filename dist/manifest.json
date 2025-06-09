@@ -1,0 +1,21 @@
+{
+  "name": "PWA Sapeurs-Pompiers",
+  "short_name": "PompiersApp",
+  "description": "Application PWA pour la gestion des véhicules des sapeurs-pompiers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FF0000",
+  "theme_color": "#FF0000",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/vite.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import { CardGrid } from '@/components/card-grid';
 const materiels = [
   {
     id: 1,
-    imageSrc: 'https://images.pexels.com/photos/3863793/pexels-photo-3863793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    imageSrc: 'https://www.men-fire.fr/452-large_default/sac-intervention-43l-reflex.jpg',
     title: 'Lance Incendie',
     description: 'Équipement essentiel pour la projection d\'eau ou de mousse sur un foyer d\'incendie.',
   },

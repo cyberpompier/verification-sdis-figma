@@ -3,7 +3,7 @@ import { CardGrid } from '@/components/card-grid';
 const personnel = [
   {
     id: 1,
-    imageSrc: 'https://images.pexels.com/photos/1089640/pexels-photo-1089640.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSedxGVLsx50vDOe04zvxY4sdSvJfhCcAvCrQ&s',
     title: 'Chef d\'Agrès',
     description: 'Responsable d\'une équipe d\'intervention et de la gestion des opérations sur le terrain.',
   },
