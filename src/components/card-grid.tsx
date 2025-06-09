@@ -15,6 +15,7 @@ export function CardGrid({ data }: CardGridProps) {
       {data.map((item) => (
         <VehicleCard
           key={item.id}
+          id={item.id} // Pass id to VehicleCard
           imageSrc={item.imageSrc}
           title={item.title}
           description={item.description}

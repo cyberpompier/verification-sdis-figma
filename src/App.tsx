@@ -6,7 +6,8 @@ import { Footer } from './components/footer';
 import { LandingPage } from './components/landing-page';
 import { VehiculesPage } from './pages/VehiculesPage';
 import { MaterielsPage } from './pages/MaterielsPage';
-import { PersonnelPage } from './pages/PersonnelPage'; // Import the new page
+import { PersonnelPage } from './pages/PersonnelPage';
+import { VehicleDetailPage } from './pages/VehicleDetailPage'; // Import the new page
 
 function App() {
   const [showLandingPage, setShowLandingPage] = useState(true);
@@ -31,7 +32,8 @@ function App() {
               <Route path="/" element={<Navigate to="/vehicules" replace />} />
               <Route path="/vehicules" element={<VehiculesPage />} />
               <Route path="/materiels" element={<MaterielsPage />} />
-              <Route path="/personnel" element={<PersonnelPage />} /> {/* Add the new route */}
+              <Route path="/personnel" element={<PersonnelPage />} />
+              <Route path="/vehicules/:id" element={<VehicleDetailPage />} /> {/* Add the new route with ID */}
             </Routes>
             <Footer />
           </div>
