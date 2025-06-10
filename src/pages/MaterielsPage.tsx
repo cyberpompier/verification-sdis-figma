@@ -1,50 +1,81 @@
-import { CardGrid } from '@/components/card-grid';
+import { useState, useEffect } from 'react';
+    import { CardGrid } from '@/components/card-grid';
+    import { supabase } from '@/lib/supabase';
 
-const materiels = [
-  {
-    id: 1,
-    imageSrc: 'https://www.men-fire.fr/452-large_default/sac-intervention-43l-reflex.jpg',
-    title: 'Lance Incendie',
-    description: 'Équipement essentiel pour la projection d\'eau ou de mousse sur un foyer d\'incendie.',
-  },
-  {
-    id: 2,
-    imageSrc: 'https://images.pexels.com/photos/3863793/pexels-photo-3863793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    title: 'Appareil Respiratoire Isolant (ARI)',
-    description: 'Permet aux pompiers de respirer dans des atmosphères toxiques ou enfumées.',
-  },
-  {
-    id: 3,
-    imageSrc: 'https://images.pexels.com/photos/3863793/pexels-photo-3863793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    title: 'Défibrillateur',
-    description: 'Utilisé pour réanimer une victime d\'arrêt cardiaque par choc électrique.',
-  },
-  {
-    id: 4,
-    imageSrc: 'https://images.pexels.com/photos/3863793/pexels-photo-3863793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    title: 'Coussin de Levage',
-    description: 'Permet de soulever des charges lourdes lors d\'opérations de désincarcération.',
-  },
-  {
-    id: 5,
-    imageSrc: 'https://images.pexels.com/photos/3863793/pexels-photo-3863793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    title: 'Tronçonneuse',
-    description: 'Outil de découpe pour dégager des accès ou des victimes.',
-  },
-  {
-    id: 6,
-    imageSrc: 'https://images.pexels.com/photos/3863793/pexels-photo-3863793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    title: 'Projecteur Portable',
-    description: 'Fournit un éclairage puissant sur les lieux d\'intervention nocturnes.',
-  },
-];
+    interface Material {
+      id: string;
+      name: string;
+      type: string;
+      photo_url: string;
+    }
 
-export function MaterielsPage() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow pt-20 pb-20 bg-gray-100 px-4 sm:px-6 lg:px-8">
-        <CardGrid data={materiels} />
-      </main>
-    </div>
-  );
-}
+    export function MaterielsPage() {
+      const [materials, setMaterials] = useState<Material[]>([]);
+      const [loading, setLoading] = useState(true);
+      const [error, setError] = useState<string | null>(null);
+
+      useEffect(() => {
+        async function fetchMaterials() {
+          setLoading(true);
+          setError(null);
+          try {
+            const { data, error } = await supabase
+              .from('materials')
+              .select('id, name, type, photo_url');
+
+            if (error) {
+              throw error;
+            }
+
+            // Map Supabase data to CardGrid expected props
+            const formattedMaterials = data.map(material => ({
+              id: material.id,
+              imageSrc: material.photo_url, // photo_url -> imageSrc
+              title: material.name,       // name -> title
+              description: material.type,   // type -> description
+            }));
+
+            setMaterials(formattedMaterials);
+          } catch (err) {
+            console.error('Erreur lors du chargement des matériels:', err);
+            setError('Échec du chargement des matériels. Veuillez réessayer.');
+          } finally {
+            setLoading(false);
+          }
+        }
+
+        fetchMaterials();
+      }, []);
+
+      if (loading) {
+        return (
+          <div className="flex flex-col min-h-screen items-center justify-center pt-20 pb-20 bg-gray-100 px-4 sm:px-6 lg:px-8">
+            <p className="text-gray-700 text-lg">Chargement des matériels...</p>
+          </div>
+        );
+      }
+
+      if (error) {
+        return (
+          <div className="flex flex-col min-h-screen items-center justify-center pt-20 pb-20 bg-gray-100 px-4 sm:px-6 lg:px-8">
+            <p className="text-red-500 text-lg">{error}</p>
+          </div>
+        );
+      }
+
+      if (materials.length === 0) {
+        return (
+          <div className="flex flex-col min-h-screen items-center justify-center pt-20 pb-20 bg-gray-100 px-4 sm:px-6 lg:px-8">
+            <p className="text-gray-700 text-lg">Aucun matériel trouvé.</p>
+          </div>
+        );
+      }
+
+      return (
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-grow pt-20 pb-20 bg-gray-100 px-4 sm:px-6 lg:px-8">
+            <CardGrid data={materials} linkPrefix="/materiels" /> {/* Passe le préfixe */}
+          </main>
+        </div>
+      );
+    }
