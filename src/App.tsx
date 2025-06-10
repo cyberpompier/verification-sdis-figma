@@ -8,7 +8,8 @@ import { VehiculesPage } from './pages/VehiculesPage';
 import { MaterielsPage } from './pages/MaterielsPage';
 import { PersonnelPage } from './pages/PersonnelPage';
 import { VehicleDetailPage } from './pages/VehicleDetailPage';
-import { MaterialDetailPage } from './pages/MaterialDetailPage'; // Import the new MaterialDetailPage
+import { MaterialDetailPage } from './pages/MaterialDetailPage';
+import { ScanPage } from './pages/ScanPage'; // Import the new ScanPage
 import { LoginPage } from './pages/LoginPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { Toaster } from './components/ui/toaster';
@@ -39,8 +40,9 @@ function App() {
                 <Route path="/vehicules" element={<VehiculesPage />} />
                 <Route path="/vehicules/:id" element={<VehicleDetailPage />} />
                 <Route path="/materiels" element={<MaterielsPage />} />
-                <Route path="/materiels/:id" element={<MaterialDetailPage />} /> {/* Add new route for material details */}
+                <Route path="/materiels/:id" element={<MaterialDetailPage />} />
                 <Route path="/personnel" element={<PersonnelPage />} />
+                <Route path="/scan" element={<ScanPage />} /> {/* Add new route for Scan page */}
               </Route>
             </Routes>
             <Footer />
