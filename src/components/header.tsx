@@ -50,6 +50,7 @@ export function Header() {
     { path: '/materiels', name: 'Matériels' },
     { path: '/personnel', name: 'Personnel' },
     { path: '/scan', name: 'Scan' },
+    { path: '/geolocalisation', name: 'Géolocalisation' }, // Add new link for Geolocalisation
   ];
 
   return (
